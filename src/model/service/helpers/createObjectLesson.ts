@@ -63,21 +63,3 @@ class ObjectLesson {
 }
 
 export default new ObjectLesson();
-
-/*
-(` WITH teachers_array AS (
-            SELECT "main_teachers"."id" AS "teacher_id", JSON_STRIP_NULLS(JSON_AGG(json_build_object('id', "lesson_teachers"."teachersId", 'name', "teacher"."name"))) AS "teachers" FROM lessons AS "main_teachers"
-            LEFT JOIN lessons_teachers_teachers AS lesson_teachers ON "id" = "lesson_teachers"."lessonsId"
-            LEFT JOIN teachers AS teacher ON "lesson_teachers"."teachersId" = "teacher"."id"
-            GROUP BY "main_teachers"."id"),
-
-            students_array AS (
-                SELECT "main_students"."id" AS "student_id", JSON_STRIP_NULLS(JSON_AGG(json_build_object('id', "lesson_student"."studentId", 'name', "student"."name"))) AS "students" FROM lessons AS "main_students"
-                LEFT JOIN lesson_students AS lesson_student ON "id" = "lesson_student"."lessonId"
-                LEFT JOIN students AS student ON "lesson_student"."studentId" = "student"."id" 
-                GROUP BY "main_students"."id")
-    
-        SELECT "id", "date", "title", "status", "teachers", "students" FROM lessons 
-        LEFT JOIN teachers_array ON "id" = "teachers_array"."teacher_id"
-        LEFT JOIN students_array ON "lessons"."id" = "students_array"."student_id"`);
-*/
