@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import { ILesson } from "../../types";
 import { Lessons } from "../entity/Lessons";
 import DateHelper from "./helpers/dateHelper";
-import createObjectLesson from "./helpers/createObjectLesson";
+import createObjectLesson from "./helpers/ObjectLesson";
 
 class ServiceCrud {
     async get(params) {
