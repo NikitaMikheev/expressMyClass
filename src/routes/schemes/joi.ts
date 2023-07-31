@@ -1,5 +1,5 @@
 import Joi from 'joi';
-
+// здесь описание схем для joi валидации
 class JoiCrud {
     querySchemaGet = Joi.object({
         date: Joi.string().description('Одна или две даты'),

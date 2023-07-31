@@ -20,12 +20,12 @@ class ObjectLesson {
         return newLesson;
     }
 
-    async createObjectRelations(body: ILesson) {
+    async createObjectRelations(body: ILesson) { 
         const teachers = await AppDataSource.manager.findBy(Teachers, {id: In(body.teacherIds)});
         return teachers;
     }
 
-    async getLessons(params) {
+    async getLessons(params) { // sql запрос на получение занятий. Через 2 CTE получаем массивы json-объектов с учителями и студентами, затем джойним с основной таблицей и фильтруем
                     
         const lessons = await AppDataSource.manager.query(`
         WITH teachers_array AS (
@@ -57,7 +57,6 @@ class ObjectLesson {
             ${(params.page && params.page !== 1) ? `OFFSET (${params.page} * ${params.lessonsPerPage} - ${params.lessonsPerPage})` : ''}
             `);
 
-        console.log(lessons);
         return lessons;
     }
 }

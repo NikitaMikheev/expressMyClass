@@ -9,7 +9,7 @@ import { Lesson_Students } from './model/entity/Lesson_Students';
 
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
-export const AppDataSource = new DataSource({
+export const AppDataSource = new DataSource({ // подключение к базе данных, настройка миграций. Данные берутся из переменных окружения
   type: 'postgres',
   host: String(process.env.POSTGRES_HOST),
   port: Number(process.env.POSTGRES_PORT),
@@ -20,8 +20,6 @@ export const AppDataSource = new DataSource({
   migrationsRun: true,
   logging: false,
   entities: [Lessons, Students, Teachers, Lesson_Students],
-  // entities: ['src/model/entity/*.ts'],
   migrations: [path.join(__dirname, '/model/migrations/*.ts')],
-  // migrations: [User, City, UserTree],
   subscribers: [],
 });

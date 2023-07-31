@@ -21,7 +21,7 @@ class ServiceCrud {
             const array: Lessons[] = [];
             const upDate = async (date, count, lastDate) => { // рекурсивная функция на создание занятий по первой и последней дате и по дням недели
                          
-                if (body.lastDate !== undefined && date <= body.lastDate) {
+                if (body.lastDate !== undefined && date <= body.lastDate) { // если указана первая и последняя даты
                     
                     if (body.days.includes(date.getDay())) { // если день даты совпадает с днем, в который необходимо создать занятие => создаем занятие
                         const newLesson = await createObjectLesson.createObject(body, date); // формируем объект для сохранения в сущность

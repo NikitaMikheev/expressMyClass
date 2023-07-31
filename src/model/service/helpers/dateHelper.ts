@@ -1,5 +1,5 @@
 class DateHelper {
-    dateIncriment(newDate) {
+    dateIncriment(newDate) { // инкремент даты
        newDate.setDate(newDate.getDate() +1);
        return newDate;
     }

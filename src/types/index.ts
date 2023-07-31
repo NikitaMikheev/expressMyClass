@@ -1,6 +1,6 @@
 import { Teachers } from "../model/entity/Teachers";
 
-export interface ILesson {
+export interface ILesson { // интерфейс для объекта занятий
     teacherIds: Teachers[],
     title: string,
     days: number[],
@@ -9,7 +9,7 @@ export interface ILesson {
     lastDate?: Date
 }
 
-export interface INewLesson {
+export interface INewLesson { // интерфейс для нового занятия
     id?: number,
     title: string,
     status: boolean,
@@ -17,7 +17,7 @@ export interface INewLesson {
     teachers: Teachers[]
 }
 
-export interface IQueryFilter {
+export interface IQueryFilter { // интерфейс для фильтра
     date: Date[],
     status?: boolean,
     teachersIds: number[],

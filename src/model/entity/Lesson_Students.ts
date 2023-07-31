@@ -1,7 +1,7 @@
 import { Entity, Column, JoinTable, ManyToOne, PrimaryGeneratedColumn, PrimaryColumn } from "typeorm";
 import { Students } from "./Students";
 import { Lessons } from "./Lessons";
-
+// сущность "занятия-студенты". Таблица содержит связи студенты-занятия
 @Entity()
 export class Lesson_Students {
     
@@ -14,7 +14,7 @@ export class Lesson_Students {
     @PrimaryColumn()
     studentId: number
 
-    @Column() // статус занятия - посетил/не посетил
+    @Column() // статус занятия - посетил/не посетил. Дополнительное поле
     visit: boolean
 
     @ManyToOne(() => Students, (student) => student.Lesson_Student)

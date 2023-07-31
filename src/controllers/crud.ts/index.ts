@@ -1,10 +1,10 @@
 import ServiceCrud from '../../model/service/crud';
 import { IQueryFilter } from '../../types';
-
+// контроллеры
 class CrudController {
     async get (req, res) { // метод на получение
         try {
-            const queryFilter: IQueryFilter = {
+            const queryFilter: IQueryFilter = { // формируем объект фильтра
                 date: [],
                 teachersIds: [],
                 studentsCount: []
@@ -15,11 +15,11 @@ class CrudController {
 
             
 
-            if (req.query.page) {
+            if (req.query.page) { 
                 queryFilter.page = req.query.page;
             }
             
-            if (req.query.teacherIds) {
+            if (req.query.teacherIds) { // проверяем на корректность ввода массива учителей из 2 элементов
                 const teachersSplit = req.query.teacherIds.split(',');
                 teachersSplit.map(elem => {
                     const newEl = Number(elem);
@@ -33,7 +33,7 @@ class CrudController {
                 });
             }
             
-            if (req.query.date) {
+            if (req.query.date) { // проверка на корректность ввода массива из двух дат
                 const dateArray = req.query.date.split(',');
                 const date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
                 if (dateArray.length >2) {
@@ -49,7 +49,7 @@ class CrudController {
                 }
             }
 
-            if (req.query.studentsCount) {
+            if (req.query.studentsCount) { // проверка на корректность массива из количества студентов на занятии
                 const dateArray = req.query.studentsCount.split(',');
                 
                 if (dateArray.length>2) {
@@ -67,11 +67,9 @@ class CrudController {
                 });
             }
             
-            const result = await ServiceCrud.get(queryFilter);
-            console.log(req.query.lessonsPerPage);
-            console.log(queryFilter);
-            
-            res.send(result);
+            const result = await ServiceCrud.get(queryFilter); // передаем параметры фильтра в функцию, формирующую sql запрос
+        
+            res.send(result); // посылаем ответ с контроллера
         } catch (error) {
             res.send(error.message);
         }
@@ -82,7 +80,7 @@ class CrudController {
             const result = await ServiceCrud.create(req.body);
             console.log(result);
             
-            res.send(result);
+            res.send(result); // ответ с контроллера
         } catch (error) {
             res.send(error);
         }
